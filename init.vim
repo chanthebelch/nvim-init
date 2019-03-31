@@ -7,13 +7,13 @@ Plug 'xuyuanp/nerdtree-git-plugin', {'on': 'NERDTreeToggle'}
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'w0rp/ale'
 Plug 'tpope/vim-surround'
-Plug 'Yggdroot/LeaderF'
+Plug 'Yggdroot/LeaderF', {'do': './install.sh'}
 Plug 'sbdchd/neoformat'
 Plug 'tpope/vim-commentary'
 Plug 'mattn/emmet-vim'
-Plug 'SirVer/ultisnips'
+Plug 'SirVer/ultisnips'  " we got coc-snippets, but we still need this...
 Plug 'honza/vim-snippets'
-" language
+" language support
 Plug 'sheerun/vim-polyglot'
 Plug 'lervag/vimtex', {'for': 'latex'}
 Plug 'jez/vim-better-sml', {'for': 'sml'}
@@ -22,14 +22,19 @@ Plug 'ternjs/tern_for_vim', {'do': 'npm install && npm install -g tern'}
 Plug 'justinmk/vim-syntax-extra', {'for': ['yacc', 'lex', 'c']}
 Plug 'JuliaEditorSupport/julia-vim'
 Plug 'wannesm/wmgraphviz.vim', {'for': 'dot'}
-Plug 'sophacles/vim-processing', {'for': 'processing'}
-" code display
+Plug 'sophacles/vim-processing'
+" interface
+Plug 'ryanoasis/vim-devicons'
+Plug 'mhinz/vim-startify'
 Plug 'airblade/vim-gitgutter'
+Plug 'rhysd/git-messenger.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'icymind/NeoSolarized'
 Plug 'tomasr/molokai'
+Plug 'patstockwell/vim-monokai-tasty'
 Plug 'joshdick/onedark.vim'
 Plug 'dracula/vim'
+Plug 'challenger-deep-theme/vim', {'as': 'challenger-deep'}
 call plug#end()
 
 " setup provider for neovim to save startup time

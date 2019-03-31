@@ -13,6 +13,12 @@ set nofoldenable
 " terminal
 tnoremap <Esc> <C-\><C-n>
 
+" python
+augroup python
+    autocmd FileType python setlocal textwidth=79
+    autocmd FileType python :write
+augroup end
+
 " set shiftwidth and tabstop for ruby files
 augroup twospaces
 autocmd FileType ruby setlocal expandtab shiftwidth=2 tabstop=2
@@ -41,11 +47,13 @@ func! ComplieAndRun()
     exec 'w'
     if &filetype ==? 'java'
         exec '!javac %'
-        exec '!time java %<'
+        exec '!junit %<'
     elseif &filetype ==? 'c'
         exec '!clang % -o %<'
         exec '!time ./%<'
     elseif &filetype ==? 'python'
         exec '!time python %'
+    elseif &filetype ==? 'javascript.jsx'
+        exec '!time node %'
     endif
 endfunc
