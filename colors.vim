@@ -11,14 +11,13 @@ if exists('$TMUX')
 endif
 
 " set color scheme
-" colorscheme molokai
-" set t_Co=256
-" let g:molokai_original = 1
-" let g:rehash256 = 1
-let g:vim_monokai_tasty_italic = 1
-colorscheme vim-monokai-tasty
+colorscheme molokai
+set t_Co=256
+let g:molokai_original = 1
+let g:rehash256 = 1
+" colorscheme challenger_deep
 let g:lightline = {
-      \ 'colorscheme': 'monokai_tasty',
+      \ 'colorscheme': 'challenger_deep',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]

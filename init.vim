@@ -15,7 +15,8 @@ Plug 'SirVer/ultisnips'  " we got coc-snippets, but we still need this...
 Plug 'honza/vim-snippets'
 " language support
 Plug 'sheerun/vim-polyglot'
-Plug 'lervag/vimtex', {'for': 'latex'}
+Plug 'plasticboy/vim-markdown', {'for': 'markdown'}  " polyglot does NOT syntax highlighting for fenced code block
+Plug 'lervag/vimtex', {'for': ['tex', 'plaintex', 'bst']}
 Plug 'jez/vim-better-sml', {'for': 'sml'}
 Plug 'enomsg/vim-haskellConcealPlus', {'for': 'haskell'}
 Plug 'ternjs/tern_for_vim', {'do': 'npm install && npm install -g tern'}
@@ -31,7 +32,6 @@ Plug 'rhysd/git-messenger.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'icymind/NeoSolarized'
 Plug 'tomasr/molokai'
-Plug 'patstockwell/vim-monokai-tasty'
 Plug 'joshdick/onedark.vim'
 Plug 'dracula/vim'
 Plug 'challenger-deep-theme/vim', {'as': 'challenger-deep'}

@@ -61,12 +61,6 @@ let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
 let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
 
 
-" ========================= vimtex ==========================
-let g:vimtex_compiler_progname = 'nvr'
-
-" ========================= codi ==========================
-"nnoremap <F5> : Codi!!<CR>
-
 " ========================= Tabular ==========================
 inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
 
@@ -80,6 +74,39 @@ function! s:align()
     call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
   endif
 endfunction
+
+
+" ========================= vimtex ==========================
+let g:polyglot_disabled = ['latex']
+let g:vimtex_compiler_progname = 'nvr'
+let g:tex_flavor = 'latex'
+let g:vimtex_quickfix_mode = 0
+
+augroup latex
+autocmd FileType tex setlocal conceallevel=1
+augroup end
+
+let g:tex_conceal = 'abdmg'
+
+let g:vimtex_compiler_method = 'latexmk'
+let g:vimtex_compiler_latexmk = {
+            \ 'backend' : 'nvim',
+            \ 'background' : 1,
+            \ 'build_dir' : '',
+            \ 'callback' : 1,
+            \ 'continuous' : 1,
+            \ 'executable' : 'latexmk',
+            \ 'options' : [
+            \   '-xelatex',
+            \   '-verbose',
+            \   '-file-line-error',
+            \   '-synctex=1',
+            \   '-interaction=nonstopmode',
+            \ ],
+            \}
+
+let g:vimtex_view_method = 'zathura'
+let g:vimtex_view_general_options_latexmk = '-resue-instance'
 
 
 " ======================== Ultisnips ========================
