@@ -76,8 +76,15 @@ function! s:align()
 endfunction
 
 
+" ==================== vim-markdown =====================
+augroup toc
+    autocmd FileType markdown nnoremap <buffer> <F2> :Toc<CR>
+    autocmd FileType qf       nnoremap <buffer> <F2> :q<CR>
+augroup end
+
+
 " ========================= vimtex ==========================
-let g:polyglot_disabled = ['latex']
+let g:polyglot_disabled = ['latex', 'markdown']
 let g:vimtex_compiler_progname = 'nvr'
 let g:tex_flavor = 'latex'
 let g:vimtex_quickfix_mode = 0
