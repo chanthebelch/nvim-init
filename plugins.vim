@@ -1,6 +1,8 @@
 scriptencoding utf-8
 
-" =================== ctags & gutentags ======================
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                 gutentags                                  "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set tags=./.tags;,.tags
 
 " gutentags 搜索工程目录的标志，碰到这些文件/目录名就停止向上一级目录递归
@@ -24,16 +26,22 @@ if !isdirectory(s:vim_tags)
 endif
 
 
-" ====================== LeaderF =========================
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                  LeaderF                                   "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <F3> : LeaderfFile<CR>
 nnoremap <F2> : LeaderfFunctionAll<CR>
 
 
-" ======================== NERDTree ========================
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                  NERDTree                                  "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <F4> : NERDTreeToggle<CR>
 
 
-" ==================== vim-better-sml ======================
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                               vim-better-sml                               "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " FIXME: unable to detect s:repl_buffer_id?
 " TODO: move cursor to repl after starting it
 function! ToggleSMLRepl() abort
@@ -51,7 +59,9 @@ let g:sml_greek_tyvar_show_tick = 1
 augroup end
 
 
-" ===================== haskell-vim ========================
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                haskell-vim                                 "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
 let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
 let g:haskell_enable_arrowsyntax = 1      " to enable highlighting of `proc`
@@ -61,7 +71,9 @@ let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
 let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
 
 
-" ========================= Tabular ==========================
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                  Tabular                                   "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
 
 function! s:align()
@@ -76,14 +88,18 @@ function! s:align()
 endfunction
 
 
-" ==================== vim-markdown =====================
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                vim-markdown                                "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 augroup toc
     autocmd FileType markdown nnoremap <buffer> <F2> :Toc<CR>
     autocmd FileType qf       nnoremap <buffer> <F2> :q<CR>
 augroup end
 
 
-" ========================= vimtex ==========================
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                   vimtex                                   "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:polyglot_disabled = ['latex', 'markdown']
 let g:vimtex_compiler_progname = 'nvr'
 let g:tex_flavor = 'latex'
@@ -116,5 +132,7 @@ let g:vimtex_view_method = 'zathura'
 let g:vimtex_view_general_options_latexmk = '-resue-instance'
 
 
-" ======================== Ultisnips ========================
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                 UltiSnips                                  "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:UltiSnipsExpandTrigger='<c-l>'
