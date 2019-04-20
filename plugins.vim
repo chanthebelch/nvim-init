@@ -135,4 +135,4 @@ let g:vimtex_view_general_options_latexmk = '-resue-instance'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                 UltiSnips                                  "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:UltiSnipsExpandTrigger='<c-l>'
+"let g:UltiSnipsExpandTrigger='<c-l>'

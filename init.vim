@@ -11,7 +11,7 @@ Plug 'Yggdroot/LeaderF', {'do': './install.sh'}
 Plug 'sbdchd/neoformat'
 Plug 'tpope/vim-commentary'
 Plug 'mattn/emmet-vim'
-Plug 'SirVer/ultisnips'  " we got coc-snippets, but we still need this...
+"Plug 'SirVer/ultisnips'  " we got coc-snippets, but we still need this...
 Plug 'honza/vim-snippets'
 " language support
 Plug 'sheerun/vim-polyglot'
@@ -38,6 +38,7 @@ Plug 'challenger-deep-theme/vim', {'as': 'challenger-deep'}
 call plug#end()
 
 " setup provider for neovim to save startup time
+set pyxversion=3
 let g:loaded_python_provider = 1  " diable python2 support
 let g:python3_host_prog = '~/anaconda3/bin/python3'
 let g:loaded_ruby_provider = 1    " disable ruby support

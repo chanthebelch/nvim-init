@@ -10,12 +10,7 @@ if exists('$TMUX')
     let &t_8b = '[48;2;%lu;%lu;%lum'
 endif
 
-" set color scheme
-colorscheme molokai
-set t_Co=256
-let g:molokai_original = 1
-let g:rehash256 = 1
-" colorscheme challenger_deep
+" set status line
 let g:lightline = {
       \ 'colorscheme': 'challenger_deep',
       \ 'active': {
@@ -27,11 +22,18 @@ let g:lightline = {
       \ },
       \ }
 
-" set transparent background when running vim in guake
-if exists('$GUAKE_TAB_UUID')
+" set transparent background when running vim in guake or yakuake
+if exists('$GUAKE_TAB_UUID') || exists('$KONSOLE_PROFILE_NAME')
+    set t_Co=256
+    let g:molokai_original = 1
+    let g:rehash256 = 1
+    colorscheme molokai
     hi Normal ctermbg=NONE guibg=NONE
     hi SignColumn ctermbg=NONE guibg=NONE
     hi LineNr ctermbg=NONE guibg=NONE
     hi Error ctermfg=15 ctermbg=9 guifg=White guibg=Red
     hi Todo ctermfg=0 ctermbg=11 guifg=Blue guibg=Yellow
+else
+    colorscheme NeoSolarized
+    hi CocFloating ctermfg=12 ctermbg=0 guifg=#839496 guibg=#073642
 endif
