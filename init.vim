@@ -1,3 +1,6 @@
+scriptencoding utf-8
+
+
 call plug#begin('~/.local/share/nvim/plugged')
 " tools
 Plug 'godlygeek/tabular'
@@ -21,7 +24,7 @@ Plug 'jez/vim-better-sml', {'for': 'sml'}
 Plug 'enomsg/vim-haskellConcealPlus', {'for': 'haskell'}
 Plug 'ternjs/tern_for_vim', {'do': 'npm install && npm install -g tern'}
 Plug 'justinmk/vim-syntax-extra', {'for': ['yacc', 'lex', 'c']}
-Plug 'JuliaEditorSupport/julia-vim'
+Plug 'JuliaEditorSupport/julia-vim', {'for': 'julia'}
 Plug 'wannesm/wmgraphviz.vim', {'for': 'dot'}
 Plug 'sophacles/vim-processing'
 " interface

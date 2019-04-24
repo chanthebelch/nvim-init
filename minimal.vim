@@ -1,3 +1,6 @@
+scriptencoding utf-8
+
+
 filetype plugin indent on  " Load plugins according to detected filetype.
 syntax on                  " Enable syntax highlighting.
 
@@ -31,9 +34,9 @@ set synmaxcol   =200       " Only highlight the first 200 columns.
 
 set list                   " Show non-printable characters.
 if has('multi_byte') && &encoding ==# 'utf-8'
-  let &listchars = 'tab:▸ ,extends:❯,precedes:❮,nbsp:±'
+  let &listchars = 'tab:⧐-,extends:❯,precedes:❮,nbsp:±'
 else
-  let &listchars = 'tab:> ,extends:>,precedes:<,nbsp:.'
+  let &listchars = 'tab:>-,extends:>,precedes:<,nbsp:.'
 endif
 
 " The fish shell is not very compatible to other shells and unexpectedly

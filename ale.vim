@@ -35,9 +35,9 @@ let g:ale_cpp_cppcheck_options = ''
 let g:airline#extensions#ale#enabled = 1
 let g:airline_powerline_fonts = 1
 
-let g:ale_sign_error = '☠'
-let g:ale_sign_warning = '⚠'
-let g:ale_sign_info = '🛈'
+let g:ale_sign_error = 'E>'
+let g:ale_sign_warning = 'W>'
+let g:ale_sign_info = 'I>'
 hi! clear SpellBad
 hi! clear SpellCap
 hi! clear SpellRare
@@ -49,3 +49,9 @@ let g:ale_r_lintr_options = 'with_defaults(infix_spaces_linter=NULL)'
 
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
+
+"let g:ale_java_javac_options = '-SuppressWarnings="unckecked"' "FIXME
+" TODO: write a proper find-root function
+augroup javac
+    autocmd BufRead,BufNewFile *.java let b:ale_java_javac_classpath=expand('%:p:h:h')
+augroup end
