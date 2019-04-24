@@ -51,7 +51,20 @@ nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 "let g:ale_java_javac_options = '-SuppressWarnings="unckecked"' "FIXME
-" TODO: write a proper find-root function
+" TODO: write a set build-dir function
 augroup javac
-    autocmd BufRead,BufNewFile *.java let b:ale_java_javac_classpath=expand('%:p:h:h')
+    autocmd BufRead,BufNewFile *.java let b:ale_java_javac_classpath = s:GetClassPath()
 augroup end
+
+
+function! s:GetClassPath()
+    let s:cp = expand('%:p:h')
+    let s:line = getline(1)
+    if match(s:line, '^package \+[a-zA-Z].\+;$', 0) ==# 0
+        let s:line = substitute(s:line, '^package \+', '', '')
+        let s:line = substitute(s:line, '\.', '\/', 'g')
+        let s:line = substitute(s:line, ';', '', '')
+        let s:cp = substitute(s:cp, s:line, '', '')
+    endif
+    return s:cp
+endfunction
