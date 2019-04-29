@@ -4,7 +4,6 @@ let g:ale_linters = {
 \   'sh': ['shellcheck'],
 \   'awk': ['gawk'],
 \   'c': ['clang', 'flawfinder'],
-\   'python': ['flake8'],
 \   'javascript': ['standard'],
 \   'sml': ['smlnj'],
 \   'haskell': ['ghc'],
@@ -16,6 +15,7 @@ let g:ale_linters = {
 \   'java': ['javac']
 \}
 "\   'text': ['alex', 'wrire-good', 'proselint'],
+"\   'python': ['flake8'],
 
 let g:ale_linters_explicit = 1
 let g:ale_completion_delay = 500
@@ -50,21 +50,50 @@ let g:ale_r_lintr_options = 'with_defaults(infix_spaces_linter=NULL)'
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
-"let g:ale_java_javac_options = '-SuppressWarnings="unckecked"' "FIXME
+let g:ale_java_javac_options = '-Xlint:-unchecked' "FIXME
 " TODO: write a set build-dir function
 augroup javac
-    autocmd BufRead,BufNewFile *.java let b:ale_java_javac_classpath = s:GetClassPath()
+    autocmd! BufRead,BufNewFile,BufWrite *.java call s:SetBufClassPath()
 augroup end
 
 
-function! s:GetClassPath()
-    let s:cp = expand('%:p:h')
-    let s:line = getline(1)
-    if match(s:line, '^package \+[a-zA-Z].\+;$', 0) ==# 0
-        let s:line = substitute(s:line, '^package \+', '', '')
-        let s:line = substitute(s:line, '\.', '\/', 'g')
-        let s:line = substitute(s:line, ';', '', '')
-        let s:cp = substitute(s:cp, s:line, '', '')
-    endif
-    return s:cp
+function! s:SetBufClassPath()
+    let s:cp = s:GetClassPath()
+    let b:ale_java_javac_classpath = s:cp . ':' . $CLASSPATH
 endfunction
+
+
+function! s:Pkg2Path()
+    let l:line = getline(1)
+    if match(l:line, '^package \+[a-zA-Z].\+;$', 0) ==# 0
+        let l:line = substitute(l:line, '^package \+', '', '')
+        let l:line = substitute(l:line, '\.', '\/', 'g')
+        return '/' . substitute(l:line, ';', '', '')
+    else
+        return ''
+    endif
+endfunction
+
+
+function! s:GetClassPath()
+    let l:cp = expand('%:p:h')
+    let l:path = s:Pkg2Path()
+    if l:path !=# ''
+        let l:cp = substitute(l:cp, l:path, '', '')
+    endif
+    return l:cp
+endfunction
+
+
+function! s:NewClass(cls)
+    let l:pkgdefine = getline(1)
+    let l:filename = expand('%:p:h') . '/' . a:cls . '.java'
+    execute 'edit ' . l:filename
+    call setline(1, l:pkgdefine)
+    call setline(2, '')
+    call setline(3, 'public class ' . a:cls . ' {')
+    call setline(4, '// TODO: put your awesome code here')
+    call setline(5, '}')
+endfunction
+
+command! -nargs=1 NewClass call s:NewClass(<f-args>)
