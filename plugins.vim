@@ -133,6 +133,20 @@ let g:vimtex_view_general_options_latexmk = '-resue-instance'
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                           vimwiki && calendar.vim                          "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:vimwiki_list = [{'path': '~/vimwiki/', 'ext': '.md', 'syntax': 'markdown'}]
+"let g:vimwiki_table_mappings = 0
+let g:vimwiki_global_ext = 0
+
+" FIXME: it doesn't work
+augroup vimwiki
+    autocmd FileType vimwiki nnoremap <buffer> <F3> :Calendar<CR>
+    autocmd FileType calendar nnoremap <buffer> <F3> :q<CR>
+augroup end
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                 UltiSnips                                  "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "let g:UltiSnipsExpandTrigger='<c-l>'

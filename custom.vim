@@ -44,7 +44,6 @@ augroup end
 map <F5> :call ComplieAndRun()<CR>
 
 func! ComplieAndRun()
-    exec 'w'
     if &filetype ==? 'java'
         exec '!javac %'
         exec '!junit %<'

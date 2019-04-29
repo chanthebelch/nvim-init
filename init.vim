@@ -3,6 +3,8 @@ scriptencoding utf-8
 
 call plug#begin('~/.local/share/nvim/plugged')
 " tools
+Plug 'vimwiki/vimwiki'
+Plug 'mattn/calendar.vim'
 Plug 'godlygeek/tabular'
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
