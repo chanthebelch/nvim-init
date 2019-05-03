@@ -29,6 +29,7 @@ if exists('$GUAKE_TAB_UUID') || exists('$KONSOLE_PROFILE_NAME')
     let g:rehash256 = 1
     colorscheme molokai
     hi Normal ctermbg=NONE guibg=NONE
+    hi Conceal ctermfg=7 ctermbg=242 guifg=LightGrey guibg=NONE
     hi SignColumn ctermbg=NONE guibg=NONE
     hi LineNr ctermbg=NONE guibg=NONE
     hi Error ctermfg=15 ctermbg=9 guifg=White guibg=Red

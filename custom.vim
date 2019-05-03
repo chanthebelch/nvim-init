@@ -39,20 +39,3 @@ augroup racket
 au! BufRead,BufNewFile *.ss	setfiletype racket
 au! BufRead,BufNewFile *.rkt	setfiletype racket
 augroup end
-
-" quick run
-map <F5> :call ComplieAndRun()<CR>
-
-func! ComplieAndRun()
-    if &filetype ==? 'java'
-        exec '!javac %'
-        exec '!junit %<'
-    elseif &filetype ==? 'c'
-        exec '!clang % -o %<'
-        exec '!time ./%<'
-    elseif &filetype ==? 'python'
-        exec '!time python %'
-    elseif &filetype ==? 'javascript.jsx'
-        exec '!time node %'
-    endif
-endfunc
