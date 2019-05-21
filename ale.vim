@@ -3,7 +3,6 @@ scriptencoding utf-8
 let g:ale_linters = {
 \   'sh': ['shellcheck'],
 \   'awk': ['gawk'],
-\   'c': ['clang', 'flawfinder'],
 \   'javascript': ['standard'],
 \   'sml': ['smlnj'],
 \   'haskell': ['ghc'],
@@ -132,7 +131,7 @@ function! s:NewClass(cls)
     call cursor(4, 3)
 endfunction
 
-command! -nargs=1 JnewClass call s:NewClass(<f-args>)
+command! -nargs=1 Jclass call s:NewClass(<f-args>)
 
 
 function! s:NewTest()
