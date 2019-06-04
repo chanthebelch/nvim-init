@@ -10,6 +10,7 @@ Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'xuyuanp/nerdtree-git-plugin', {'on': 'NERDTreeToggle'}
 Plug 'ludovicchabant/vim-gutentags'
+Plug 'liuchengxu/vista.vim'
 Plug 'w0rp/ale'
 Plug 'tpope/vim-surround'
 Plug 'Yggdroot/LeaderF', {'do': './install.sh'}

@@ -18,7 +18,8 @@ let g:lightline = {
       \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
       \ },
       \ 'component_function': {
-      \   'cocstatus': 'coc#status'
+      \   'cocstatus': 'coc#status',
+      \   'method': 'NearestMethodOrFunction'
       \ },
       \ }
 
