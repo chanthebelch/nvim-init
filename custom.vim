@@ -29,11 +29,6 @@ autocmd FileType r setlocal expandtab shiftwidth=2 tabstop=2
 autocmd FileType java setlocal expandtab shiftwidth=2 tabstop=2
 augroup end
 
-" set shiftwidth and tabstop for c files
-augroup fourspaces
-autocmd FileType c setlocal expandtab shiftwidth=4 tabstop=4
-augroup end
-
 " racket
 augroup racket
 au! BufRead,BufNewFile *.ss	setfiletype racket

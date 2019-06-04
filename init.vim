@@ -47,7 +47,7 @@ set pyxversion=3
 let g:loaded_python_provider = 1  " diable python2 support
 let g:python3_host_prog = '~/anaconda3/bin/python3'
 let g:loaded_ruby_provider = 1    " disable ruby support
-let g:node_host_prog = '~/APP/node-v10.13.0-linux-x64/bin/neovim-node-host'
+let g:node_host_prog = '~/APP/node-linux-x64/bin/neovim-node-host'
 let g:clipboard = {
       \   'name': 'xsel',
       \   'copy': {

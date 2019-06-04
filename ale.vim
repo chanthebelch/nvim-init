@@ -9,12 +9,8 @@ let g:ale_linters = {
 \   'racket': ['raco'],
 \   'r': ['lintr'],
 \   'vim': ['vint'],
-\   'html': ['alex'],
-\   'latex': ['alex'],
 \   'java': ['javac']
 \}
-"\   'text': ['alex', 'wrire-good', 'proselint'],
-"\   'python': ['flake8'],
 
 let g:ale_linters_explicit = 1
 let g:ale_completion_delay = 500

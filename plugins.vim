@@ -3,16 +3,33 @@ scriptencoding utf-8
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                 gutentags                                  "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let $GTAGSLABEL = 'native-pygments'
+let $GTAGSCONF = '~/.gtags.conf'
+
 set tags=./.tags;,.tags
 
-" gutentags 搜索工程目录的标志，碰到这些文件/目录名就停止向上一级目录递归
+let s:vim_tags = expand('~/.cache/tags')
+" 检测 ~/.cache/tags 不存在就新建
+if !isdirectory(s:vim_tags)
+   silent! call mkdir(s:vim_tags, 'p')
+endif
+
+" gutentags 搜索工程目录的标志，当前文件路径向上递归直到碰到这些文件/目录名
 let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
 
 " 所生成的数据文件的名称
 let g:gutentags_ctags_tagfile = '.tags'
 
-" 将自动生成的 tags 文件全部放入 ~/.cache/tags 目录中，避免污染工程目录
-let s:vim_tags = expand('~/.cache/tags')
+" 同时开启 ctags 和 gtags 支持：
+let g:gutentags_modules = []
+if executable('ctags')
+  let g:gutentags_modules += ['ctags']
+endif
+if executable('gtags-cscope') && executable('gtags')
+  let g:gutentags_modules += ['gtags_cscope']
+endif
+
+" 将自动生成的 ctags/gtags 文件全部放入 ~/.cache/tags 目录中，避免污染工程目录
 let g:gutentags_cache_dir = s:vim_tags
 
 " 配置 ctags 的参数
@@ -20,11 +37,15 @@ let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
 let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
 let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
 
-" 检测 ~/.cache/tags 不存在就新建
-if !isdirectory(s:vim_tags)
-   silent! call mkdir(s:vim_tags, 'p')
-endif
+" 如果使用 universal ctags 需要增加下面一行
+let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
 
+" 禁用 gutentags 自动加载 gtags 数据库的行为
+let g:gutentags_auto_add_gtags_cscope = 0
+
+" debug
+"let g:gutentags_define_advanced_commands = 1
+"let g:gutentags_trace = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                  LeaderF                                   "
@@ -94,6 +115,7 @@ endfunction
 augroup toc
     autocmd FileType markdown nnoremap <buffer> <F2> :Toc<CR>
     autocmd FileType qf       nnoremap <buffer> <F2> :q<CR>
+    autocmd FileType tex      nnoremap <buffer> <F2> :VimtexTocToggle<CR>
 augroup end
 
 
@@ -103,7 +125,8 @@ augroup end
 let g:polyglot_disabled = ['latex', 'markdown']
 let g:vimtex_compiler_progname = 'nvr'
 let g:tex_flavor = 'latex'
-let g:vimtex_quickfix_mode = 0
+let g:vimtex_quickfix_mode = 2
+let g:vimtex_quickfix_autoclose_after_keystrokes = 1
 
 augroup latex
 autocmd FileType tex setlocal conceallevel=1

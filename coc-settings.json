@@ -1,4 +1,7 @@
 {
+    "python.jediEnabled": false,
+    "python.condaPath": "~/anaconda3/bin/conda",
+    "python.pythonPath": "~/anaconda3/bin/python",
     "languageserver": {
         "ccls": {
             "command": "~/APP/ccls/Release/ccls",
