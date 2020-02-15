@@ -15,7 +15,7 @@ let g:lightline = {
       \ 'colorscheme': 'challenger_deep',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
+      \             [ 'cocstatus', 'readonly', 'filename', 'modified', 'method' ] ]
       \ },
       \ 'component_function': {
       \   'cocstatus': 'coc#status',

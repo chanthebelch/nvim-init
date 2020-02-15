@@ -28,9 +28,3 @@ autocmd FileType javascript setlocal expandtab shiftwidth=2 tabstop=2
 autocmd FileType r setlocal expandtab shiftwidth=2 tabstop=2
 autocmd FileType java setlocal expandtab shiftwidth=2 tabstop=2
 augroup end
-
-" racket
-augroup racket
-au! BufRead,BufNewFile *.ss	setfiletype racket
-au! BufRead,BufNewFile *.rkt	setfiletype racket
-augroup end

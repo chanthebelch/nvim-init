@@ -31,7 +31,6 @@ endif
 
 " 将自动生成的 ctags/gtags 文件全部放入 ~/.cache/tags 目录中，避免污染工程目录
 let g:gutentags_cache_dir = s:vim_tags
-let g:gutentags_gtags_dbpath = s:vim_tags
 
 " 配置 ctags 的参数
 let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
@@ -52,7 +51,6 @@ let g:gutentags_auto_add_gtags_cscope = 0
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                  vista                                     "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 function! NearestMethodOrFunction() abort
   return get(b:, 'vista_nearest_method_or_function', '')
 endfunction
@@ -79,9 +77,6 @@ let g:vista_default_executive = 'ctags'
 " instead of the default one for these filetypes when using `:Vista` without
 " specifying the executive.
 let g:vista_executive_for = {
-            \ 'c': 'coc',
-            \ 'python': 'coc',
-            \'rust': 'coc',
   \ 'cpp': 'vim_lsp',
   \ 'php': 'vim_lsp',
   \ }
@@ -106,12 +101,13 @@ let g:vista#renderer#icons = {
 \   "variable": "\uf71b",
 \  }
 
+nnoremap <F2> : Vista!!<CR>
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                  LeaderF                                   "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <F3> : LeaderfFile<CR>
-nnoremap <F2> : LeaderfFunctionAll<CR>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -227,6 +223,14 @@ augroup vimwiki
     autocmd FileType vimwiki nnoremap <buffer> <F3> :Calendar<CR>
     autocmd FileType calendar nnoremap <buffer> <F3> :q<CR>
 augroup end
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                            asyncrun && asynctasks                          "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:asyncrun_open = 6
+noremap <silent><F9> :AsyncTask file-build<cr>
+noremap <silent><F5> :AsyncTask file-run<cr>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

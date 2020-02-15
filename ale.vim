@@ -7,9 +7,9 @@ let g:ale_linters = {
 \   'sml': ['smlnj'],
 \   'haskell': ['ghc'],
 \   'racket': ['raco'],
-\   'r': ['lintr'],
 \   'vim': ['vint'],
-\   'java': ['javac']
+\   'java': ['javac'],
+\   'prolog': ['swipl']
 \}
 
 let g:ale_linters_explicit = 1
@@ -46,117 +46,3 @@ nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 let g:ale_java_javac_options = '-Xlint:-unchecked' "FIXME
-" TODO: write a set build-dir function
-augroup javac
-    autocmd! BufRead,BufNewFile,BufWrite *.java call s:SetBufClassPath()
-augroup end
-
-
-" quick run
-map <F5> :call ComplieAndRun()<CR>
-
-func! ComplieAndRun()
-    if &filetype ==? 'java'
-        exec '!javac %'
-        exec '!junit ' . FullClassPath()
-    elseif &filetype ==? 'c'
-        exec '!clang % -o %<'
-        exec '!time ./%<'
-    elseif &filetype ==? 'python'
-        exec '!time python %'
-    elseif &filetype ==? 'javascript.jsx'
-        exec '!time node %'
-    endif
-endfunc
-
-
-function! FullClassPath()
-    let l:classname = substitute(expand('%:p:t'), '\.java', '', '')
-    let l:line = getline(1)
-    if match(l:line, '^package \+[a-zA-Z].\+;$', 0) ==# 0
-        let l:line = substitute(l:line, '^package \+', '', '')
-        return substitute(l:line, ';', '', '') . '.' . l:classname
-    else
-        return l:classname
-    endif
-endfunction
-
-
-function! s:SetBufClassPath()
-    let s:cp = s:GetClassPath()
-    let b:ale_java_javac_classpath = s:cp . ':' . $CLASSPATH
-endfunction
-
-
-function! s:Pkg2Path()
-    let l:line = getline(1)
-    if match(l:line, '^package \+[a-zA-Z].\+;$', 0) ==# 0
-        let l:line = substitute(l:line, '^package \+', '', '')
-        let l:line = substitute(l:line, '\.', '\/', 'g')
-        return '/' . substitute(l:line, ';', '', '')
-    else
-        return ''
-    endif
-endfunction
-
-
-function! s:GetClassPath()
-    let l:cp = expand('%:p:h')
-    let l:path = s:Pkg2Path()
-    if l:path !=# ''
-        let l:cp = substitute(l:cp, l:path, '', '')
-    endif
-    return l:cp
-endfunction
-
-
-function! s:NewClass(cls)
-    let l:filename = expand('%:p:h') . '/' . a:cls . '.java'
-    if filereadable(l:filename)
-        echo '[warning]: ' . l:filename . ' already existed!'
-        execute 'edit ' . l:filename
-        return
-    endif
-    let l:pkgdefine = getline(1)
-    execute 'edit ' . l:filename
-    call setline(1, l:pkgdefine)
-    call setline(2, '')
-    call setline(3, 'public class ' . a:cls . ' {')
-    call setline(4, '// TODO: put your awesome code here')
-    call setline(5, '}')
-    call cursor(4, 3)
-endfunction
-
-command! -nargs=1 Jclass call s:NewClass(<f-args>)
-
-
-function! s:NewTest()
-    if match(expand('%:p:t'), 'Test', 0) ># -1
-        echo '[warning]: this may be a junit test file'
-        return
-    endif
-    let l:filename = substitute(expand('%:p'), '\.java', '', '') . 'Test.java'
-    if filereadable(l:filename)
-        echo '[warning]: ' . l:filename . ' already existed!'
-        execute 'edit ' . l:filename
-        return
-    endif
-    let l:classname = substitute(expand('%:p:t'), '\.java', '', '') . 'Test'
-    let l:pkgdefine = getline(1)
-    execute 'edit ' . l:filename
-    call setline(1, l:pkgdefine)
-    call setline(2, '')
-    call setline(3, 'import org.junit.Test;')
-    call setline(4, 'import static org.junit.Assert.*;')
-    call setline(5, '')
-    call setline(6, '')
-    call setline(7, 'public class ' . l:classname . ' {')
-    call setline(8, '  @Test')
-    call setline(9, '  public void test() {')
-    call setline(10, '  // TODO: put your code here')
-    call setline(11, '  }')
-    call setline(12, '}')
-    call cursor(10, 3)
-endfunction
-
-command! JnewTest call s:NewTest()

@@ -1,4 +1,5 @@
 {
+    "coc.preferences.extensionUpdateCheck": "weekly",
     "python.jediEnabled": false,
     "python.condaPath": "~/anaconda3/bin/conda",
     "python.pythonPath": "~/anaconda3/bin/python",
@@ -21,6 +22,25 @@
             "initializationOptions": {
                 "cache": {
                     "directory": "/tmp/ccls"
+                }
+            }
+        },
+        "haskell": {
+            "command": "hie-wrapper",
+            "args": ["--lsp"],
+            "rootPatterns": [
+                "*.cabal",
+                "stack.yaml",
+                "cabal.project",
+                "package.yaml"
+            ],
+            "filetypes": [
+                "hs",
+                "lhs",
+                "haskell"
+            ],
+            "initializationOptions": {
+                "languageServerHaskell": {
                 }
             }
         }
