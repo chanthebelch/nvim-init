@@ -1,11 +1,11 @@
 {
     "coc.preferences.extensionUpdateCheck": "weekly",
     "python.jediEnabled": false,
-    "python.condaPath": "~/anaconda3/bin/conda",
-    "python.pythonPath": "~/anaconda3/bin/python",
+    "python.condaPath": "~/apps/anaconda3/bin/conda",
+    "python.pythonPath": "~/apps/anaconda3/bin/python",
     "languageserver": {
         "ccls": {
-            "command": "~/APP/ccls/Release/ccls",
+            "command": "ccls",
             "filetypes": [
                 "c",
                 "cpp",
@@ -22,25 +22,6 @@
             "initializationOptions": {
                 "cache": {
                     "directory": "/tmp/ccls"
-                }
-            }
-        },
-        "haskell": {
-            "command": "hie-wrapper",
-            "args": ["--lsp"],
-            "rootPatterns": [
-                "*.cabal",
-                "stack.yaml",
-                "cabal.project",
-                "package.yaml"
-            ],
-            "filetypes": [
-                "hs",
-                "lhs",
-                "haskell"
-            ],
-            "initializationOptions": {
-                "languageServerHaskell": {
                 }
             }
         }

@@ -26,5 +26,6 @@ autocmd FileType html setlocal expandtab shiftwidth=2 tabstop=2
 autocmd FileType css setlocal expandtab shiftwidth=2 tabstop=2
 autocmd FileType javascript setlocal expandtab shiftwidth=2 tabstop=2
 autocmd FileType r setlocal expandtab shiftwidth=2 tabstop=2
+autocmd FileType dart setlocal expandtab shiftwidth=2 tabstop=2
 autocmd FileType java setlocal expandtab shiftwidth=2 tabstop=2
 augroup end

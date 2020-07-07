@@ -8,7 +8,7 @@ let g:ale_linters = {
 \   'haskell': ['ghc'],
 \   'racket': ['raco'],
 \   'vim': ['vint'],
-\   'java': ['javac'],
+"\   'java': ['javac'],
 \   'prolog': ['swipl']
 \}
 
@@ -46,3 +46,4 @@ nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 let g:ale_java_javac_options = '-Xlint:-unchecked' "FIXME
+let g:ale_java_javac_classpath = $CLASSPATH

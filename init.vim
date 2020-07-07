@@ -15,17 +15,20 @@ Plug 'skywind3000/gutentags_plus'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'skywind3000/asynctasks.vim'
 Plug 'liuchengxu/vista.vim'
+Plug 'liuchengxu/vim-which-key'
 Plug 'w0rp/ale'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-projectionist'
+Plug 'tpope/vim-commentary'
 Plug 'Yggdroot/LeaderF', {'do': './install.sh'}
 Plug 'sbdchd/neoformat'
-Plug 'tpope/vim-commentary'
 Plug 'mattn/emmet-vim'
 Plug 'puremourning/vimspector'
 "Plug 'SirVer/ultisnips'  " we got coc-snippets, but we still need this...
 Plug 'honza/vim-snippets'
 " language support
 Plug 'sheerun/vim-polyglot'
+Plug 'chemzqm/wxapp.vim'
 Plug 'plasticboy/vim-markdown', {'for': 'markdown'}  " polyglot does NOT syntax highlighting for fenced code block
 Plug 'chanthebelch/vim-racket', {'for': 'racket'}  " my fork from wlangstroth
 Plug 'lervag/vimtex', {'for': ['tex', 'plaintex', 'bst']}
@@ -36,7 +39,6 @@ Plug 'justinmk/vim-syntax-extra', {'for': ['yacc', 'lex', 'c']}
 Plug 'JuliaEditorSupport/julia-vim', {'for': 'julia'}
 Plug 'wannesm/wmgraphviz.vim', {'for': 'dot'}
 Plug 'sophacles/vim-processing'
-Plug 'Beerstorm/vim-brainfuck', {'for': 'brainfuck'}
 " interface
 Plug 'ryanoasis/vim-devicons'
 Plug 'mhinz/vim-startify'
@@ -52,20 +54,19 @@ call plug#end()
 
 " setup provider for neovim to save startup time
 set pyxversion=3
-"let g:loaded_python_provider = 1  " diable python2 support
-let g:python_host_prog = '~/anaconda3/envs/py2/bin/python2'
-let g:python3_host_prog = '~/anaconda3/bin/python3'
+let g:python_host_prog = '~/apps/anaconda3/envs/py2/bin/python2'
+let g:python3_host_prog = '~/apps/anaconda3/bin/python'
 let g:loaded_ruby_provider = 1    " disable ruby support
-let g:node_host_prog = '~/APP/node-linux-x64/bin/neovim-node-host'
+let g:node_host_prog = '/usr/bin/neovim-node-host'
 let g:clipboard = {
-      \   'name': 'xsel',
+      \   'name': 'xclip',
       \   'copy': {
-      \      '+': 'xsel -b -i',
-      \      '*': 'xsel -p -i',
+      \      '+': 'xclip -i -selection clipboard',
+      \      '*': 'xclip -i -selection primary',
       \    },
       \   'paste': {
-      \      '+': 'xsel -b -o',
-      \      '*': 'xsel -p -o',
+      \      '+': 'xclip -o -selection clipboard',
+      \      '*': 'xclip -o -selection primary',
       \   },
       \   'cache_enabled': 1,
       \ }

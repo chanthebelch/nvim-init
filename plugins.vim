@@ -207,8 +207,8 @@ let g:vimtex_compiler_latexmk = {
             \ ],
             \}
 
-let g:vimtex_view_method = 'zathura'
-let g:vimtex_view_general_options_latexmk = '-resue-instance'
+"let g:vimtex_view_method = 'zathura'
+"let g:vimtex_view_general_options_latexmk = '-resue-instance'
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -231,9 +231,59 @@ augroup end
 let g:asyncrun_open = 6
 noremap <silent><F9> :AsyncTask file-build<cr>
 noremap <silent><F5> :AsyncTask file-run<cr>
+nnoremap <F10> :call asyncrun#quickfix_toggle(6)<cr>
+
+noremap <silent><f6> :AsyncTask file-test<cr>
+
+"noremap <silent><f6> :AsyncTask project-run<cr>
+noremap <silent><f7> :AsyncTask project-build<cr>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                 UltiSnips                                  "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "let g:UltiSnipsExpandTrigger='<c-l>'
+
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                 emmet.vim                                  "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:user_emmet_settings = {
+  \ 'wxss': {
+  \   'extends': 'css',
+  \ },
+  \ 'wxml': {
+  \   'extends': 'html',
+  \   'aliases': {
+  \     'div': 'view',
+  \     'span': 'text',
+  \   },
+  \  'default_attributes': {
+  \     'block': [{'wx:for-items': '{{list}}','wx:for-item': '{{item}}'}],
+  \     'navigator': [{'url': '', 'redirect': 'false'}],
+  \     'scroll-view': [{'bindscroll': ''}],
+  \     'swiper': [{'autoplay': 'false', 'current': '0'}],
+  \     'icon': [{'type': 'success', 'size': '23'}],
+  \     'progress': [{'precent': '0'}],
+  \     'button': [{'size': 'default'}],
+  \     'checkbox-group': [{'bindchange': ''}],
+  \     'checkbox': [{'value': '', 'checked': ''}],
+  \     'form': [{'bindsubmit': ''}],
+  \     'input': [{'type': 'text'}],
+  \     'label': [{'for': ''}],
+  \     'picker': [{'bindchange': ''}],
+  \     'radio-group': [{'bindchange': ''}],
+  \     'radio': [{'checked': ''}],
+  \     'switch': [{'checked': ''}],
+  \     'slider': [{'value': ''}],
+  \     'action-sheet': [{'bindchange': ''}],
+  \     'modal': [{'title': ''}],
+  \     'loading': [{'bindchange': ''}],
+  \     'toast': [{'duration': '1500'}],
+  \     'audio': [{'src': ''}],
+  \     'video': [{'src': ''}],
+  \     'image': [{'src': '', 'mode': 'scaleToFill'}],
+  \   }
+  \ },
+  \}
